@@ -1,0 +1,110 @@
+object MainForm: TMainForm
+  Left = 307
+  Height = 151
+  Top = 119
+  Width = 640
+  BorderStyle = bsDialog
+  Caption = 'S369 Test Suite'
+  ClientHeight = 151
+  ClientWidth = 640
+  LCLVersion = '2.2.6.0'
+  object FileEncDecGroupBox: TGroupBox
+    Left = 16
+    Height = 129
+    Top = 8
+    Width = 608
+    Caption = 'File Encryption | Decryption   '
+    ClientHeight = 109
+    ClientWidth = 604
+    TabOrder = 0
+    object SourceFile: TEdit
+      Left = 8
+      Height = 23
+      Top = 0
+      Width = 504
+      MaxLength = 255
+      TabOrder = 0
+      Text = 'C:\Users\ALPER\Downloads\Test.zip'
+    end
+    object SelectFile: TButton
+      Left = 520
+      Height = 25
+      Top = 0
+      Width = 75
+      Caption = 'Select File'
+      OnClick = SelectFileClick
+      TabOrder = 1
+    end
+    object SelectOperation: TRadioGroup
+      Left = 8
+      Height = 64
+      Top = 32
+      Width = 104
+      AutoFill = True
+      Caption = 'Operation   '
+      ChildSizing.LeftRightSpacing = 6
+      ChildSizing.EnlargeHorizontal = crsHomogenousChildResize
+      ChildSizing.EnlargeVertical = crsHomogenousChildResize
+      ChildSizing.ShrinkHorizontal = crsScaleChilds
+      ChildSizing.ShrinkVertical = crsScaleChilds
+      ChildSizing.Layout = cclLeftToRightThenTopToBottom
+      ChildSizing.ControlsPerLine = 1
+      ClientHeight = 44
+      ClientWidth = 100
+      ItemIndex = 0
+      Items.Strings = (
+        'Encryption'
+        'Decryption'
+      )
+      OnClick = SelectOperationClick
+      TabOrder = 2
+    end
+    object Password: TEdit
+      Left = 120
+      Height = 23
+      Top = 40
+      Width = 160
+      Font.CharSet = TURKISH_CHARSET
+      Font.Name = 'Segoe UI Semibold'
+      Font.Pitch = fpVariable
+      Font.Quality = fqDraft
+      Font.Style = [fsBold, fsItalic]
+      ParentFont = False
+      TabOrder = 3
+      TextHint = 'Enter password here'
+    end
+    object ShowPassword: TCheckBox
+      Left = 120
+      Height = 19
+      Top = 72
+      Width = 102
+      Caption = 'Show Password'
+      Checked = True
+      OnChange = ShowPasswordChange
+      State = cbChecked
+      TabOrder = 4
+    end
+    object StartOperation: TButton
+      Left = 496
+      Height = 40
+      Top = 56
+      Width = 99
+      Caption = 'Start Operation'
+      OnClick = StartOperationClick
+      TabOrder = 5
+    end
+    object VerifyFileIntegrity: TCheckBox
+      Left = 296
+      Height = 19
+      Top = 40
+      Width = 118
+      Caption = 'Verify File Integrity'
+      TabOrder = 6
+      Visible = False
+    end
+  end
+  object OpenFile: TOpenDialog
+    Left = 472
+    Top = 88
+  end
+end

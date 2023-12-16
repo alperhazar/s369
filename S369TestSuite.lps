@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <PathDelim Value="\"/>
+    <Version Value="12"/>
+    <BuildModes Active="Default"/>
+    <Units>
+      <Unit>
+        <Filename Value="S369TestSuite.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="10" Y="5"/>
+        <UsageCount Value="24"/>
+      </Unit>
+      <Unit>
+        <Filename Value="mainpage.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="MainForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <TopLine Value="56"/>
+        <CursorPos X="3" Y="70"/>
+        <UsageCount Value="24"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="s369operations.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="S369Operations"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="149"/>
+        <CursorPos X="3" Y="22"/>
+        <UsageCount Value="24"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="s369.pas"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\lazarus\fpc\3.2.2\source\rtl\inc\systemh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1315"/>
+        <CursorPos X="11" Y="1336"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="C:\lazarus\fpc\3.2.2\source\rtl\objpas\classes\classesh.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="1811"/>
+        <CursorPos X="15" Y="1821"/>
+        <UsageCount Value="10"/>
+      </Unit>
+    </Units>
+    <JumpHistory HistoryIndex="29">
+      <Position>
+        <Filename Value="mainpage.pas"/>
+        <Caret Line="15" Column="80"/>
+      </Position>
+      <Position>
+        <Filename Value="mainpage.pas"/>
+        <Caret Line="9" Column="14"/>
+      </Position>
+      <Position>
+        <Filename Value="mainpage.pas"/>
+        <Caret Line="17" Column="37"/>
+      </Position>
+      <Position>
+        <Filename Value="mainpage.pas"/>
+        <Caret Line="21" Column="59"/>
+      </Position>
+      <Position>
+        <Filename Value="mainpage.pas"/>
+        <Caret Line="64" Column="7" TopLine="53"/>
+      </Position>
+      <Position>
+        <Filename Value="mainpage.pas"/>
+        <Caret Line="63" Column="7" TopLine="52"/>
+      </Position>
+      <Position>
+        <Filename Value="mainpage.pas"/>
+        <Caret Line="18" Column="14" TopLine="10"/>
+      </Position>
+      <Position>
+        <Filename Value="mainpage.pas"/>
+        <Caret Line="9" Column="20"/>
+      </Position>
+      <Position>
+        <Filename Value="s369operations.pas"/>
+        <Caret Line="32" Column="63" TopLine="16"/>
+      </Position>
+      <Position>
+        <Filename Value="s369operations.pas"/>
+        <Caret Line="24" Column="7" TopLine="3"/>
+      </Position>
+      <Position>
+        <Filename Value="s369operations.pas"/>
+        <Caret Line="81" Column="38" TopLine="53"/>
+      </Position>
+      <Position>
+        <Filename Value="s369operations.pas"/>
+        <Caret Line="34" Column="33" TopLine="13"/>
+      </Position>
+      <Position>
+        <Filename Value="s369operations.pas"/>
+        <Caret Line="52" Column="48" TopLine="31"/>
+      </Position>
+      <Position>
+        <Filename Value="s369operations.pas"/>
+        <Caret Line="63" Column="54" TopLine="42"/>
+      </Position>
+      <Position>
+        <Filename Value="s369operations.pas"/>
+        <Caret Line="73" Column="42" TopLine="52"/>
+      </Position>
+      <Position>
+        <Filename Value="s369operations.pas"/>
+        <Caret Line="35" Column="41" TopLine="12"/>
+      </Position>
+      <Position>
+        <Filename Value="s369operations.pas"/>
+        <Caret Line="59" Column="9" TopLine="40"/>
+      </Position>
+      <Position>
+        <Filename Value="mainpage.pas"/>
+        <Caret Line="9" Column="20"/>
+      </Position>
+      <Position>
+        <Filename Value="mainpage.pas"/>
+        <Caret Line="36" Column="22"/>
+      </Position>
+      <Position>
+        <Filename Value="mainpage.pas"/>
+        <Caret Line="78" Column="161" TopLine="46"/>
+      </Position>
+      <Position>
+        <Filename Value="s369operations.pas"/>
+        <Caret Line="116" Column="49" TopLine="89"/>
+      </Position>
+      <Position>
+        <Filename Value="s369operations.pas"/>
+        <Caret Line="8" Column="26"/>
+      </Position>
+      <Position>
+        <Filename Value="mainpage.pas"/>
+        <Caret Line="9" Column="17"/>
+      </Position>
+      <Position>
+        <Filename Value="mainpage.pas"/>
+        <Caret Line="85" Column="39" TopLine="53"/>
+      </Position>
+      <Position>
+        <Filename Value="mainpage.pas"/>
+        <Caret Line="93" Column="27" TopLine="58"/>
+      </Position>
+      <Position>
+        <Filename Value="mainpage.pas"/>
+        <Caret Line="84" TopLine="58"/>
+      </Position>
+      <Position>
+        <Filename Value="mainpage.pas"/>
+        <Caret Line="72" Column="3" TopLine="58"/>
+      </Position>
+      <Position>
+        <Filename Value="mainpage.pas"/>
+        <Caret Line="87" Column="23" TopLine="58"/>
+      </Position>
+      <Position>
+        <Filename Value="mainpage.pas"/>
+        <Caret Line="92" Column="29" TopLine="56"/>
+      </Position>
+      <Position>
+        <Filename Value="mainpage.pas"/>
+        <Caret Line="70" Column="3" TopLine="56"/>
+      </Position>
+    </JumpHistory>
+    <RunParams>
+      <FormatVersion Value="2"/>
+      <Modes ActiveMode=""/>
+    </RunParams>
+  </ProjectSession>
+</CONFIG>
