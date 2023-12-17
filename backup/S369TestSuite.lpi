@@ -46,6 +46,12 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="S369Operations"/>
       </Unit>
+      <Unit>
+        <Filename Value="messagepage.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="MessagePage"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

@@ -13,7 +13,6 @@ type
   { TMainForm }
 
   TMainForm = class(TForm)
-    VerifyFileIntegrity: TCheckBox;
     StartOperation: TButton;
     ShowPassword: TCheckBox;
     Password: TEdit;
@@ -53,8 +52,7 @@ end;
 
 procedure TMainForm.SelectOperationClick(Sender: TObject);
 begin
-  if SelectOperation.ItemIndex = 1 then
-    VerifyFileIntegrity.Visible := True else VerifyFileIntegrity.Visible := False;
+  SourceFile.Text := '';
 end;
 
 procedure TMainForm.ShowPasswordChange(Sender: TObject);
@@ -84,12 +82,12 @@ begin
   if SelectOperation.ItemIndex = 0 then
   begin
     EncryptFileS369 := S369Operations.TFileEncryptionDecryption.Initalize(SourceFile.Text, SourceFile.Text + '.enc', S369Operations.ES369Operation.eEncryption, Key, Length(Password.Text)-1);
-    EncryptFileS369.Start();
+    EncryptFileS369.Execute();
   end
   else
   begin
     DecryptFileS369 :=  S369Operations.TFileEncryptionDecryption.Initalize(SourceFile.Text, SourceFile.Text + '.dec', S369Operations.ES369Operation.eDecryption, Key, Length(Password.Text)-1);
-    DecryptFileS369.Start();
+    DecryptFileS369.Execute();
   end;
 end;
 

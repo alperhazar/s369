@@ -5,7 +5,11 @@ unit S369Operations;
 interface
 
 uses
-  Classes, SysUtils, s369, mainpage;
+  Classes, SysUtils, s369, FileUtil;
+
+const
+  EWrongPassword = 'Wrong password/key!';
+  EDecryptedFileCorruption = 'Decrypted file hash and header mismatch! File might be corrupted!';
 
 type
 
@@ -19,7 +23,7 @@ type
 
   { TFileEncryptionDecryption }
 
-  TFileEncryptionDecryption = class(TThread)
+  TFileEncryptionDecryption = class
     protected
       FS369: TS369;
       FKey: S369.TS369Data;
@@ -30,12 +34,12 @@ type
       FEncryptedFileHeaderFile: file of REncryptedFileHeader;
       FFileReader, FFileWriter: TFileStream;
       FFileSize: Int64;
-      procedure Execute(); override;
-      function CalculateFileHash(): TS369Data;
+      function CalculateFileHash(FileName: string): TS369Data;
       function CalculateEncryptionHash(): TS369Data;
     public
       constructor Initalize(SourceFileName, DestinationFileName: string;
         Operation: ES369Operation; Key: S369.TS369Data; KeyLength: Byte);
+      procedure Execute();
   end;
 
 implementation
@@ -49,20 +53,15 @@ var
   K: Byte;
   Buf, Buf2: TS369Data;
 begin
-  mainpage.MainForm.StartOperation.Enabled := False;
-  mainpage.MainForm.Refresh;
-  mainpage.MainForm.SelectOperation.Caption := 'Please wait...';
   FillChar(Buf, SizeOf(Buf), 0);
   FillChar(Buf2, SizeOf(Buf2), 0);
   case FOperation of
     ES369Operation.eEncryption: begin
-      FFileReader := TFileStream.Create(FSourceFileName, fmOpenRead);
-      FFileSize := FFileReader.Size;
-      FFileReader.Free;
+      FFileSize := FileSize(FSourceFileName);
       with FEncryptedFileHeader do
       begin
         RawFileLength := FFileSize;
-        RawFileHash := Self.CalculateFileHash();
+        RawFileHash := Self.CalculateFileHash(FSourceFileName);
         FileEncryptionHash := Self.CalculateEncryptionHash();
       end;
       AssignFile(FEncryptedFileHeaderFile, FDestinationFileName);
@@ -93,9 +92,10 @@ begin
       Reset(FEncryptedFileHeaderFile);
       Read(FEncryptedFileHeaderFile, FEncryptedFileHeader);
       CloseFile(FEncryptedFileHeaderFile);
+      Buf := FEncryptedFileHeader.FileEncryptionHash;
       for K := 0 to SizeOf(FEncryptedFileHeader.FileEncryptionHash)-1 do
-        if FEncryptedFileHeader.FileEncryptionHash[K] <> Self.CalculateEncryptionHash()[K] then
-          raise Exception.Create('Wrong Password/Key');
+        if Buf[K] <> Self.CalculateEncryptionHash()[K] then
+          raise Exception.Create(EWrongPassword);
       FFileReader := TFileStream.Create(FSourceFileName, fmOpenRead);
       FFileSize := FEncryptedFileHeader.RawFileLength;
       FFileWriter := TFileStream.Create(FDestinationFileName, fmCreate);
@@ -116,16 +116,15 @@ begin
       FFileWriter.Size := FFileSize;
       FFileWriter.Free;
       FFileReader.Free;
+      Buf := Self.CalculateFileHash(FDestinationFileName);
+      for K := 0 to High(TS369Data) do
+        if Buf[K] <> FEncryptedFileHeader.RawFileHash[K] then
+          raise Exception.Create(EDecryptedFileCorruption);
     end;
   end;
-  mainpage.MainForm.Refresh;
-  mainpage.MainForm.SelectOperation.Caption := 'Start Operation';
-  mainpage.MainForm.StartOperation.Enabled := True;
-  Self.Destroy;
 end;
 
-function TFileEncryptionDecryption.CalculateFileHash():
-  TS369Data;
+function TFileEncryptionDecryption.CalculateFileHash(FileName: string): TS369Data;
 var
   I: Int64;
   J: Integer;
@@ -134,7 +133,7 @@ var
   Buf, Buf2: TS369Data;
   S: TS369;
 begin
-  F := TFileStream.Create(FSourceFileName, fmOpenRead);
+  F := TFileStream.Create(FileName, fmOpenRead);
   I := F.Size;
   FillChar(Buf, SizeOf(Buf), 0);
   FillChar(Buf2, SizeOf(Buf2), 0);
@@ -175,7 +174,7 @@ constructor TFileEncryptionDecryption.Initalize(SourceFileName,
 var
   Buf: TS369Data;
 begin
-  inherited Create(False);
+  inherited Create();
   FillChar(Buf, SizeOf(Buf), 0);
   FSourceFileName := SourceFileName;
   FDestinationFileName := DestinationFileName;

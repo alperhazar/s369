@@ -1,0 +1,40 @@
+object MessagePage: TMessagePage
+  Left = 955
+  Height = 100
+  Top = 121
+  Width = 400
+  BorderStyle = bsDialog
+  Caption = 'MessagePage'
+  ClientHeight = 100
+  ClientWidth = 400
+  Position = poDesktopCenter
+  LCLVersion = '2.2.6.0'
+  object MessageSection: TMemo
+    Left = 8
+    Height = 58
+    Top = 8
+    Width = 384
+    Color = clWhite
+    Font.CharSet = TURKISH_CHARSET
+    Font.Name = 'Consolas'
+    Font.Pitch = fpFixed
+    Font.Quality = fqDraft
+    Lines.Strings = (
+      'MessageSection'
+    )
+    ParentFont = False
+    ParentShowHint = False
+    ReadOnly = True
+    ScrollBars = ssBoth
+    ShowHint = True
+    TabOrder = 0
+  end
+  object CloseMessagePage: TButton
+    Left = 317
+    Height = 25
+    Top = 72
+    Width = 75
+    Caption = 'OK'
+    TabOrder = 1
+  end
+end

@@ -46,6 +46,12 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="S369Operations"/>
       </Unit>
+      <Unit>
+        <Filename Value="messagepage.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="MessagePage"/>
+        <ResourceBaseClass Value="Form"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -68,6 +74,11 @@
         </Win32>
       </Options>
     </Linking>
+    <Other>
+      <Verbosity>
+        <ShowHints Value="False"/>
+      </Verbosity>
+    </Other>
   </CompilerOptions>
   <Debugging>
     <Exceptions>
