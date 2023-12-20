@@ -18,6 +18,8 @@
         <ComponentName Value="MainForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <TopLine Value="54"/>
+        <CursorPos X="33" Y="85"/>
         <UsageCount Value="24"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -28,7 +30,7 @@
         <UnitName Value="S369Operations"/>
         <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <CursorPos X="52" Y="98"/>
+        <CursorPos X="17" Y="42"/>
         <UsageCount Value="24"/>
         <Loaded Value="True"/>
       </Unit>
@@ -44,6 +46,7 @@
       <Unit>
         <Filename Value="s369.pas"/>
         <EditorIndex Value="-1"/>
+        <TopLine Value="32"/>
         <UsageCount Value="10"/>
       </Unit>
       <Unit>
@@ -85,11 +88,7 @@
         <UsageCount Value="10"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="mainpage.pas"/>
-        <Caret Line="93" Column="27" TopLine="58"/>
-      </Position>
+    <JumpHistory HistoryIndex="18">
       <Position>
         <Filename Value="mainpage.pas"/>
         <Caret Line="84" TopLine="58"/>
@@ -155,42 +154,6 @@
         <Caret Line="52" TopLine="36"/>
       </Position>
       <Position>
-        <Filename Value="s369operations.pas"/>
-        <Caret Line="120" Column="79" TopLine="90"/>
-      </Position>
-      <Position>
-        <Filename Value="s369operations.pas"/>
-        <Caret Line="12" Column="96"/>
-      </Position>
-      <Position>
-        <Filename Value="s369operations.pas"/>
-        <Caret Line="128" Column="43" TopLine="112"/>
-      </Position>
-      <Position>
-        <Filename Value="s369operations.pas"/>
-        <Caret Line="37" Column="16" TopLine="16"/>
-      </Position>
-      <Position>
-        <Filename Value="s369operations.pas"/>
-        <Caret Line="138" Column="35" TopLine="112"/>
-      </Position>
-      <Position>
-        <Filename Value="s369operations.pas"/>
-        <Caret Line="128" Column="36" TopLine="107"/>
-      </Position>
-      <Position>
-        <Filename Value="s369operations.pas"/>
-        <Caret Line="37" Column="50" TopLine="16"/>
-      </Position>
-      <Position>
-        <Filename Value="s369operations.pas"/>
-        <Caret Line="66" Column="62" TopLine="45"/>
-      </Position>
-      <Position>
-        <Filename Value="s369operations.pas"/>
-        <Caret Line="121" Column="55" TopLine="100"/>
-      </Position>
-      <Position>
         <Filename Value="mainpage.pas"/>
         <Caret Line="84" Column="31" TopLine="48"/>
       </Position>
@@ -199,12 +162,8 @@
         <Caret Line="90" Column="31" TopLine="49"/>
       </Position>
       <Position>
-        <Filename Value="s369operations.pas"/>
-        <Caret Line="121" Column="7" TopLine="112"/>
-      </Position>
-      <Position>
-        <Filename Value="s369operations.pas"/>
-        <Caret Line="125" Column="54"/>
+        <Filename Value="mainpage.pas"/>
+        <Caret Line="86" Column="24" TopLine="54"/>
       </Position>
     </JumpHistory>
     <RunParams>
