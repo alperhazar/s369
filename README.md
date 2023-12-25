@@ -75,17 +75,17 @@ Step #4 - 8 Bit Key-Dependent Substitution Box calculation
 
 > This step is quite easy. 12 keys used with special order to mix byte members of s-box.
 
-# Key usage order
-  1-2, 2-3, 3-4, 4-5, 5-6, 6-7, 7-8, 8-9, 9-10, 10-11, 11-12
+    # Key usage order
+      1-2, 2-3, 3-4, 4-5, 5-6, 6-7, 7-8, 8-9, 9-10, 10-11, 11-12
 
-  # Example Pseudo Code
-  for i = 1 to 11
-  {
-    a = sbox[key[i]]
-    b = sbox[key[i+1]]
-    sbox[key[i]] = b
-    sbox[key[i+1]] = a    
-  }
+      # Example Pseudo Code
+      for i = 1 to 11
+      {
+        a = sbox[key[i]]
+        b = sbox[key[i+1]]
+        sbox[key[i]] = b
+        sbox[key[i+1]] = a    
+      }
 
 [Encryption]
 ------------
