@@ -74,6 +74,7 @@ Note ! - After Step #4, all keys generated are replaced with substitutes from 8 
 Step #4 - 8 Bit Key-Dependent Substitution Box calculation
 
 > This step is quite easy. 12 keys used with special order to mix byte members of s-box.
+
 # Key usage order
   1-2, 2-3, 3-4, 4-5, 5-6, 6-7, 7-8, 8-9, 9-10, 10-11, 11-12
 
