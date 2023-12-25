@@ -2,7 +2,7 @@ S369 - 2048 Bit Symetric Block Cipher Algorithm
 
 [Intro]
 -------
-    S369 is 2048 bit symetric block cipher algorithm. Key & data size are equal.
+S369 is 2048 bit symetric block cipher algorithm. Key & data size are equal.
 S369 is designed primarily for "quantum doomsday". Algorithm uses 2048 bit
 keys (256 byte) to make hard to crack for all cryptoanalysis methods and brute force attacks.
     S369 has 12 rounds, key-dependent s-boxes and uses key dependent data permutations.
