@@ -13,6 +13,8 @@ type
   { TMainForm }
 
   TMainForm = class(TForm)
+    Label1: TLabel;
+    Results: TMemo;
     StartOperation: TButton;
     ShowPassword: TCheckBox;
     Password: TEdit;
@@ -21,6 +23,7 @@ type
     SourceFile: TEdit;
     FileEncDecGroupBox: TGroupBox;
     OpenFile: TOpenDialog;
+    procedure FormCreate(Sender: TObject);
     procedure SelectFileClick(Sender: TObject);
     procedure SelectOperationClick(Sender: TObject);
     procedure ShowPasswordChange(Sender: TObject);
@@ -50,9 +53,15 @@ begin
     SourceFile.Text := OpenFile.FileName;
 end;
 
+procedure TMainForm.FormCreate(Sender: TObject);
+begin
+
+end;
+
 procedure TMainForm.SelectOperationClick(Sender: TObject);
 begin
   SourceFile.Text := '';
+  Password.Text := '';
 end;
 
 procedure TMainForm.ShowPasswordChange(Sender: TObject);
@@ -65,7 +74,7 @@ end;
 procedure TMainForm.StartOperationClick(Sender: TObject);
 var
   i: byte;
-  EncryptFileS369, DecryptFileS369: S369Operations.TFileEncryptionDecryption;
+  EncryptFileS369, DecryptFileS369: TFileEncryptionDecryption;
 begin
   if not FileExists(SourceFile.Text) then
   begin
@@ -77,18 +86,16 @@ begin
     Application.MessageBox('Password Empty!', 'Error');
     Exit;
   end;
-  for i := 0 to Length(Password.Text) do
-    Key[i] := Byte(Password.Text[i+1]);
+  for I := 0 to Length(Password.Text) - 1 do
+    Key[I] := Byte(Password.Text[I+1]);
   if SelectOperation.ItemIndex = 0 then
-  begin
-    EncryptFileS369 := S369Operations.TFileEncryptionDecryption.Initalize(SourceFile.Text, SourceFile.Text + '.enc', S369Operations.ES369Operation.eEncryption, Key, Length(Password.Text)-1);
-    EncryptFileS369.Execute();
-  end
+    EncryptFileS369 := S369Operations.TFileEncryptionDecryption.DoProcess(SourceFile.Text,
+                    SourceFile.Text + '.enc', S369Operations.ES369Operation.eEncryption,
+                    Key, Length(Password.Text)-1)
   else
-  begin
-    DecryptFileS369 :=  S369Operations.TFileEncryptionDecryption.Initalize(SourceFile.Text, SourceFile.Text + '.dec', S369Operations.ES369Operation.eDecryption, Key, Length(Password.Text)-1);
-    DecryptFileS369.Execute();
-  end;
+    DecryptFileS369 :=  S369Operations.TFileEncryptionDecryption.DoProcess(SourceFile.Text,
+                    SourceFile.Text + '.dec', S369Operations.ES369Operation.eDecryption,
+                    Key, Length(Password.Text)-1);
 end;
 
 end.

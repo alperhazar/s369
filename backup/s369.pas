@@ -9,7 +9,7 @@ type
   TS369Data = array [$00..S369BSize] of Byte;
   TS369 = class
     const
-      RCount = $B;
+      RCount = $11;
       Sx: array [$0..$F] of Byte =
         ($4 ,$A ,$9 ,$2 ,$D ,$8 ,$0 ,$E ,$6 ,$B ,$1 ,$C ,$7 ,$F ,$5 ,$3);
       Sy: array [$0..$F] of Byte =

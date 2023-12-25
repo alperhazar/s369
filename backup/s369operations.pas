@@ -5,14 +5,14 @@ unit S369Operations;
 interface
 
 uses
-  Classes, SysUtils, s369, FileUtil;
+  Classes, SysUtils, FileUtil, s369;
 
 const
-  EWrongPassword = 'Wrong password/key!';
-  EDecryptedFileCorruption = 'Decrypted file hash and header mismatch! File might be corrupted!';
+  ErrWrongPassword = 'Wrong password/key!';
+  ErrDestFileExists = 'Destination file already exists!';
+  ErrDecryptedFileCorruption = 'Decrypted file hash and header mismatch! File might be corrupted!';
 
 type
-
   REncryptedFileHeader = record
     RawFileHash: TS369Data;
     FileEncryptionHash: TS369Data;
@@ -21,9 +21,10 @@ type
 
   ES369Operation = (eEncryption, eDecryption);
 
-  { TFileEncryptionDecryption }
+  EEventType = (eNormal, eWarning, eError);
 
-  TFileEncryptionDecryption = class
+  { S369 Algorithm File Encryption & Decryption Class }
+  TFileEncryptionDecryption = class(TThread)
     protected
       FS369: TS369;
       FKey: S369.TS369Data;
@@ -36,15 +37,38 @@ type
       FFileSize: Int64;
       function CalculateFileHash(FileName: string): TS369Data;
       function CalculateEncryptionHash(): TS369Data;
+      procedure Execute; override;
     public
-      constructor Initalize(SourceFileName, DestinationFileName: string;
+      constructor DoProcess(SourceFileName, DestinationFileName: string;
         Operation: ES369Operation; Key: S369.TS369Data; KeyLength: Byte);
-      procedure Execute();
   end;
 
 implementation
 
 { TFileEncryptionDecryption }
+
+uses mainpage;
+
+procedure ReportToConsole(Message: string; EventType: EEventType);
+var
+  Report: string;
+begin
+  Report := '';
+  case EventType of
+    eNormal: begin
+      Report := '[Action]';
+    end;
+    eWarning: begin
+      Report := '[Warning]';
+    end;
+    eError: begin
+      Report := '[Error]';
+    end;
+  end;
+  Report := Report + ': ';
+  Report := Report + Message;
+  MainForm.Results.Lines.Add(Report);
+end;
 
 procedure TFileEncryptionDecryption.Execute;
 var
@@ -53,6 +77,8 @@ var
   K: Byte;
   Buf, Buf2: TS369Data;
 begin
+  MainForm.StartOperation.Caption := 'Please wait...';
+  MainForm.StartOperation.Enabled := False;
   FillChar(Buf, SizeOf(Buf), 0);
   FillChar(Buf2, SizeOf(Buf2), 0);
   case FOperation of
@@ -92,9 +118,13 @@ begin
       Reset(FEncryptedFileHeaderFile);
       Read(FEncryptedFileHeaderFile, FEncryptedFileHeader);
       CloseFile(FEncryptedFileHeaderFile);
+      Buf := FEncryptedFileHeader.FileEncryptionHash;
       for K := 0 to SizeOf(FEncryptedFileHeader.FileEncryptionHash)-1 do
-        if FEncryptedFileHeader.FileEncryptionHash[K] <> Self.CalculateEncryptionHash()[K] then
-          raise Exception.Create(EWrongPassword);
+        if Buf[K] <> Self.CalculateEncryptionHash()[K] then
+        begin
+          ReportToConsole(ErrWrongPassword, eError);
+          Exit;
+        end;
       FFileReader := TFileStream.Create(FSourceFileName, fmOpenRead);
       FFileSize := FEncryptedFileHeader.RawFileLength;
       FFileWriter := TFileStream.Create(FDestinationFileName, fmCreate);
@@ -118,9 +148,15 @@ begin
       Buf := Self.CalculateFileHash(FDestinationFileName);
       for K := 0 to High(TS369Data) do
         if Buf[K] <> FEncryptedFileHeader.RawFileHash[K] then
-          raise Exception.Create(EDecryptedFileCorruption);
+        begin
+          ReportToConsole(ErrDecryptedFileCorruption, eError);
+          Break;
+        end;
     end;
   end;
+  MainForm.StartOperation.Caption := 'Start Operation';
+  MainForm.StartOperation.Enabled := True;
+  Self.Execute;
 end;
 
 function TFileEncryptionDecryption.CalculateFileHash(FileName: string): TS369Data;
@@ -167,13 +203,13 @@ begin
   S.Destroy;
 end;
 
-constructor TFileEncryptionDecryption.Initalize(SourceFileName,
+constructor TFileEncryptionDecryption.DoProcess(SourceFileName,
   DestinationFileName: string; Operation: ES369Operation; Key: S369.TS369Data;
   KeyLength: Byte);
 var
   Buf: TS369Data;
 begin
-  inherited Create();
+  inherited Create(False);
   FillChar(Buf, SizeOf(Buf), 0);
   FSourceFileName := SourceFileName;
   FDestinationFileName := DestinationFileName;
@@ -182,7 +218,10 @@ begin
   FKeyLength := KeyLength;
   FS369 := TS369.Initalize(FKey, FKeyLength);
   if FileExists(FDestinationFileName) then
-    raise Exception.Create('Destination file already exists!');
+  begin
+    ReportToConsole(ErrDestFileExists, eError);
+    Exit;
+  end;
 end;
 
 end.

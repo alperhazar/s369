@@ -1,12 +1,13 @@
 object MainForm: TMainForm
-  Left = 307
-  Height = 151
-  Top = 119
+  Left = 308
+  Height = 325
+  Top = 120
   Width = 640
   BorderStyle = bsDialog
   Caption = 'S369 Test Suite'
-  ClientHeight = 151
+  ClientHeight = 325
   ClientWidth = 640
+  OnCreate = FormCreate
   LCLVersion = '2.2.6.0'
   object FileEncDecGroupBox: TGroupBox
     Left = 16
@@ -55,6 +56,7 @@ object MainForm: TMainForm
         'Encryption'
         'Decryption'
       )
+      OnClick = SelectOperationClick
       TabOrder = 2
     end
     object Password: TEdit
@@ -91,6 +93,36 @@ object MainForm: TMainForm
       OnClick = StartOperationClick
       TabOrder = 5
     end
+  end
+  object Results: TMemo
+    Left = 16
+    Height = 152
+    Top = 160
+    Width = 608
+    BorderStyle = bsNone
+    Color = clBlack
+    Font.CharSet = TURKISH_CHARSET
+    Font.Color = clLime
+    Font.Height = -13
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentFont = False
+    ScrollBars = ssBoth
+    TabOrder = 1
+  end
+  object Label1: TLabel
+    Left = 16
+    Height = 15
+    Top = 144
+    Width = 81
+    Caption = 'Result Console'
+    Font.CharSet = TURKISH_CHARSET
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Font.Style = [fsBold]
+    ParentColor = False
+    ParentFont = False
   end
   object OpenFile: TOpenDialog
     Left = 472
